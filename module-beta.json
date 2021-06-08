@@ -19,7 +19,7 @@
       "path": "lang/fr.json"
     }
   ],
-  "styles": [],
+  "styles": ["./styles/easy-light-settings.css"],
   "url": "https://github.com/mcailleaux/FoundryVTT-easy-light/tree/dist-beta",
   "download": "https://github.com/mcailleaux/FoundryVTT-easy-light/blob/dist-beta/dist/easy-light.zip?raw=true",
   "manifest": "https://raw.githubusercontent.com/mcailleaux/FoundryVTT-easy-light/dist-beta/module-beta.json",
