@@ -1,0 +1,28 @@
+{
+  "name": "easy-light-beta",
+  "title": "Easy Light BETA version",
+  "description": "Configure a set of predefined light source directly placeable",
+  "version": "1.0.0",
+  "minimumCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.7.10",
+  "author": "Skeroujvapluvit",
+  "esmodules": ["main.js"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "styles": [],
+  "url": "https://github.com/mcailleaux/FoundryVTT-easy-light/tree/dist-beta",
+  "download": "https://github.com/mcailleaux/FoundryVTT-easy-light/blob/dist-beta/dist/easy-light.zip?raw=true",
+  "manifest": "https://raw.githubusercontent.com/mcailleaux/FoundryVTT-easy-light/dist-beta/module-beta.json",
+  "readme": "https://raw.githubusercontent.com/mcailleaux/FoundryVTT-easy-light/dist-beta/README.md",
+  "changelog": "https://raw.githubusercontent.com/mcailleaux/FoundryVTT-easy-light/dist-beta/CHANGELOG.md"
+}
