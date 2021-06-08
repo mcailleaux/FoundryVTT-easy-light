@@ -1,0 +1,82 @@
+image: docker-repository-greenskin.cailleaux.com/greenskin/ci-builder-node14:2.0
+
+variables:
+  GIT_DEPTH: 0
+  GIT_STRATEGY: fetch
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - npm ci
+    - npm run build
+    - mkdir -p dist/lang
+    #    - mkdir -p dist/templates
+    #    - mkdir -p dist/styles
+    - cp lang/* dist/lang/
+    #    - cp src/templates/* dist/templates/
+    #    - cp src/styles/* dist/styles/
+    - cp module.json dist
+    - cd dist
+    #    - zip easy-light.zip -r *.* src lang util templates styles -x ".*"
+    - zip easy-light.zip -r *.* src lang -x ".*"
+  artifacts:
+    name: easy-light
+    when: on_success
+    paths:
+      - dist/easy-light.zip
+  only:
+    - tags
+    - master
+
+build_beta:
+  stage: build
+  script:
+    - npm ci
+    - npm run build
+    - mkdir -p dist/lang
+    #    - mkdir -p dist/templates
+    #    - mkdir -p dist/styles
+    - cp lang/* dist/lang/
+    #    - cp src/templates/* dist/templates/
+    #    - cp src/styles/* dist/styles/
+    - cp module-beta.json dist/module.json
+    - cd dist
+    #    - zip easy-light.zip -r *.* src lang util templates styles -x ".*"
+    - zip easy-light.zip -r *.* src lang -x ".*"
+  artifacts:
+    name: easy-light
+    when: on_success
+    paths:
+      - dist/easy-light.zip
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^(dev)\/.*$/'
+      when: on_success
+
+deploy:
+  stage: deploy
+  script:
+    - git config --global user.email "$GIT_USER_EMAIL"
+    - git config --global user.name "$GIT_USER_NAME"
+    - git add -f dist/easy-light.zip
+    - git commit -m "push artifact on dist branch"
+    - git remote set-url origin $GIT_SSH_URL
+    - git push -f origin HEAD:dist
+  only:
+    - master
+
+deploy_beta:
+  stage: deploy
+  script:
+    - git config --global user.email "$GIT_USER_EMAIL"
+    - git config --global user.name "$GIT_USER_NAME"
+    - git add -f dist/easy-light.zip
+    - git commit -m "push artifact on dist-beta branch"
+    - git remote set-url origin $GIT_SSH_URL
+    - git push -f origin HEAD:dist-beta
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^(dev)\/.*$/'
+      when: on_success
