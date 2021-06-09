@@ -1,1 +1,5 @@
-{}
+{
+  "EASYLIGHT.settings.form.name": "Configuration des sources de lumières",
+  "EASYLIGHT.settings.form.label": "Configurer",
+  "EASYLIGHT.settings.form.hint": "Les sources de lumières configurés ici peuvent être directement placé via un sous menu d'accès rapide dans les outils de lumières"
+}
